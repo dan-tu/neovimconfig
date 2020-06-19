@@ -1,0 +1,22 @@
+{
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "typescriptreact",
+        "json",
+        "javascriptreact",
+        "css",
+        "scss",
+        "Markdown",
+        "md"
+    ],
+    "eslint.filetypes": [
+        "javascript",
+        "json",
+        "typescript",
+        "typescriptreact",
+        "javascriptreact"
+    ],
+    "prettier.tabWidth": 4,
+    "prettier.trailingComma": "es5"
+}

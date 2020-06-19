@@ -79,7 +79,8 @@ let g:coc_global_extensions = [
             \ 'coc-json',
             \ 'coc-html',
             \ 'coc-emmet',
-            \ 'coc-tsserver'
+            \ 'coc-tsserver',
+            \ 'coc-prettier'
             \]
 
 " Go to definition
