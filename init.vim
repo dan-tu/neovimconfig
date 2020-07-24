@@ -19,6 +19,8 @@ set backspace=indent,eol,start
 set background=dark
 " Performance cost :(
 set updatetime=100
+set foldmethod=syntax
+set foldlevel=99
 
 " Plugins
 call plug#begin('~/.vim/plugs')
@@ -46,7 +48,11 @@ Plug 'mattn/emmet-vim'
 Plug 'tpope/vim-commentary'
 
 " Bracket, parentheses, etc
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+
+" Documentation generator
+Plug 'kkoomen/vim-doge'
 
 " Themes
 Plug 'morhetz/gruvbox'
@@ -80,7 +86,9 @@ let g:coc_global_extensions = [
             \ 'coc-html',
             \ 'coc-emmet',
             \ 'coc-tsserver',
-            \ 'coc-prettier'
+            \ 'coc-prettier',
+            \ 'coc-css',
+            \ 'coc-snippets'
             \]
 
 " Go to definition
@@ -89,6 +97,8 @@ nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 " Find everywhere the hovered keyword is used
 nmap <silent> gr <Plug>(coc-references)
+" Go to implementation
+nmap <silent> gi <Plug>(coc-implementation)
 " Rename
 nmap <leader>rn <Plug>(coc-rename)
 
@@ -104,6 +114,8 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
+" Open autocomplete when pressing ctrl space
+inoremap <silent><expr> <c-space> coc#refresh()
 
 " Press K to show documentation
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -139,18 +151,6 @@ if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
 
-" Custom auto pairs
-inoremap (; (<CR>);<C-c>O
-inoremap (, (<CR>),<C-c>O
-inoremap {; {<CR>};<C-c>O
-inoremap {, {<CR>},<C-c>O
-inoremap [; [<CR>];<C-c>O
-inoremap [, [<CR>],<C-c>O
-inoremap {<CR> {<CR>}<C-c>O
-inoremap {<Space> {  }<C-c>hhi<Space>
-inoremap (<CR> (<CR>)<C-c>O
-inoremap [<CR> [<CR>]<C-c>O
-
 " Autocomplete on enter
 if exists('*complete_info')
   inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm() : "\<C-g>u\<CR>"
@@ -166,3 +166,11 @@ autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>f :GFiles<CR>
 " All files
 nmap <leader>F :Files<CR>
+
+" Clear search when pressing <leader> and space
+nnoremap <Leader><space> :noh<cr>
+" Center search when pressing next
+nnoremap n nzz
+
+" Quick save
+nnoremap <Leader>w :w<cr>
