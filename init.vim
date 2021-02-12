@@ -20,15 +20,20 @@ set background=dark
 " Performance cost :(
 set updatetime=100
 set foldmethod=syntax
-set foldlevel=99
+set foldlevelstart=3
+set ignorecase
+set hidden
+" Auto update file if changed by external source
+set autoread
 
 " Plugins
-call plug#begin('~/.vim/plugs')
+call plug#begin('~/.config/nvim/plugged')
 
 " Syntax
 Plug 'othree/html5.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'MaxMEllon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim'
 
 " Autocomplete
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -71,6 +76,8 @@ let g:user_emmet_settings = {
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
 au FileType typescript setlocal formatprg=prettier\ --parser\ typescript
+au FileType typescript.tsx setlocal formatprg=prettier\ --parser\ typescript
+au FileType typescriptreact setlocal formatprg=prettier\ --parser\ typescript
 au FileType html setlocal formatprg=js-beautify\ --type\ html
 au FileType scss setlocal formatprg=prettier\ --parser\ css
 au FileType css setlocal formatprg=prettier\ --parser\ css
@@ -81,7 +88,7 @@ nnoremap <Enter> :noh<return><Enter>
 
 " Configuring coc
 let g:coc_global_extensions = [
-            \ 'coc-python',
+            \ 'coc-pyright',
             \ 'coc-json',
             \ 'coc-html',
             \ 'coc-emmet',
@@ -123,13 +130,13 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocAction('doHover')
+    call CocActionAsync('doHover')
   endif
 endfunction
 
 " Auto show documentation if no diagnostics on hovered word
 function! ShowDocIfNoDiagnostic(timer_id)
-  if (coc#util#has_float() == 0)
+  if (coc#float#has_float() == 0)
     silent call CocActionAsync('doHover')
   endif
 endfunction
@@ -174,3 +181,8 @@ nnoremap n nzz
 
 " Quick save
 nnoremap <Leader>w :w<cr>
+
+
+" Copypaste
+vnoremap <leader>y "+y
+nnoremap <leader>p "+p
