@@ -5,26 +5,37 @@ set tabstop=4 " Number of spaces per tab (When opening file)
 set softtabstop=4 " Number of spaces shown when editing
 set expandtab " Converts tabs into spaces
 set showcmd " Show command in bottom bar
-"set cursorline " Highlights the current line
+set cursorline " Highlights the current line
 filetype indent on " Loads filetype specific indent files from ~/.vim/indent/*
 set wildmenu " Visual autocomplete for command line
 set showmatch " Highlight matching brackets/parentheses/etc
+
 set hls " Highlight search matches
 set incsearch " Search as you are typing 
+set ignorecase " Ignore case when searching
+set smartcase " If searching and use capital letter, search becomes case sensitive
+
 set shiftwidth=4 " Auto indents are 4 spaces
 set autoindent " Turn on auto-indent
 set smartindent " Smart indent like in VSCode
 set relativenumber " Relative line numbers
+set nu " Display the absolute line number next to relative line number
 set backspace=indent,eol,start
-set background=dark
 " Performance cost :(
 set updatetime=100
 set foldmethod=syntax
 set foldlevelstart=3
-set ignorecase
+set signcolumn=yes
+
 set hidden
-" Auto update file if changed by external source
-set autoread
+
+set autoread " Auto update file if changed by external source
+set noerrorbells " No bell sounds
+set nowrap " Don't auto wrap the text if it overflows
+
+set scrolloff=8 " Scroll up and down when within 8 lines of the top or bottom of the screen
+set colorcolumn=120 " 120 Character column. Helpful for long lines
+
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -62,6 +73,7 @@ Plug 'kkoomen/vim-doge'
 " Themes
 Plug 'morhetz/gruvbox'
 call plug#end()
+
 colorscheme gruvbox
 
 let g:user_emmet_leader_key=','
