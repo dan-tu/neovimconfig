@@ -163,7 +163,7 @@ endfunction
 function! s:show_hover_doc()
   call timer_start(500, 'ShowDocIfNoDiagnostic')
 endfunction
-autocmd CursorHoldI * :call <SID>show_hover_doc()
+" autocmd CursorHoldI * :call <SID>show_hover_doc()
 
 " Go to prev/next diagnostics
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
@@ -213,6 +213,8 @@ nmap <leader>gs :G<CR>
 nmap <leader>gkr :diffget //3<CR>
 " Merge left wind w
 nmap <leader>gkl :diffget //3<CR>
+
+" Git checkout window
 let g:fzf_layout = { 'window': {'width':0.8, 'height': 0.8} }
 let $FZF_DEFAULT_OPT='--reverse'
 nnoremap <leader>gc :GCheckout<CR>
