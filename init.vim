@@ -1,4 +1,4 @@
-let mapleader=','
+let mapleader=' '
 set t_Co=256
 syntax enable " Enable syntax processing
 set tabstop=4 " Number of spaces per tab (When opening file)
@@ -34,6 +34,7 @@ set noerrorbells " No bell sounds
 set nowrap " Don't auto wrap the text if it overflows
 
 set scrolloff=8 " Scroll up and down when within 8 lines of the top or bottom of the screen
+set sidescrolloff=30
 set colorcolumn=120 " 120 Character column. Helpful for long lines
 
 
@@ -51,7 +52,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " File system
 Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Fuzzy file finder
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -72,10 +72,16 @@ Plug 'kkoomen/vim-doge'
 
 " Themes
 Plug 'morhetz/gruvbox'
+
+" Git stuff
+Plug 'Xuyuanp/nerdtree-git-plugin' " Specifically for nerdtree
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
+
 call plug#end()
 
+set background=dark
 colorscheme gruvbox
-
 let g:user_emmet_leader_key=','
 let g:user_emmet_mode='i'
 let g:user_emmet_settings = {
@@ -193,8 +199,12 @@ nnoremap n nzz
 
 " Quick save
 nnoremap <Leader>w :w<cr>
+nnoremap <Leader>q :q<cr>
 
 
 " Copypaste
 vnoremap <leader>y "+y
 nnoremap <leader>p "+p
+
+" Git stuff
+nmap <leader>gs :G<CR>
