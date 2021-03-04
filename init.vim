@@ -36,7 +36,7 @@ set nowrap " Don't auto wrap the text if it overflows
 set scrolloff=8 " Scroll up and down when within 8 lines of the top or bottom of the screen
 set sidescrolloff=30
 set colorcolumn=120 " 120 Character column. Helpful for long lines
-
+set noswf " No swap files
 
 " Plugins
 call plug#begin('~/.config/nvim/plugged')
@@ -77,6 +77,7 @@ Plug 'morhetz/gruvbox'
 Plug 'Xuyuanp/nerdtree-git-plugin' " Specifically for nerdtree
 Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
+Plug 'stsewd/fzf-checkout.vim'
 
 call plug#end()
 
@@ -148,7 +149,7 @@ function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
   else
-    call CocActionAsync('doHover')
+    silent call CocActionAsync('doHover')
   endif
 endfunction
 
@@ -212,3 +213,6 @@ nmap <leader>gs :G<CR>
 nmap <leader>gkr :diffget //3<CR>
 " Merge left wind w
 nmap <leader>gkl :diffget //3<CR>
+let g:fzf_layout = { 'window': {'width':0.8, 'height': 0.8} }
+let $FZF_DEFAULT_OPT='--reverse'
+nnoremap <leader>gc :GCheckout<CR>
