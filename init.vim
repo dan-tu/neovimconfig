@@ -208,3 +208,7 @@ nnoremap <leader>p "+p
 
 " Git stuff
 nmap <leader>gs :G<CR>
+" Merge right window
+nmap <leader>gkr :diffget //3<CR>
+" Merge left wind w
+nmap <leader>gkl :diffget //3<CR>
