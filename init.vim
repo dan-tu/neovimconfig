@@ -219,5 +219,5 @@ nmap <leader>gkl :diffget //3<CR>
 
 " Git checkout window
 let g:fzf_layout = { 'window': {'width':0.8, 'height': 0.8} }
-let $FZF_DEFAULT_OPT='--reverse'
+let $FZF_DEFAULT_OPTS='--reverse'
 nnoremap <leader>gc :GCheckout<CR>
