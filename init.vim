@@ -79,6 +79,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'tpope/vim-fugitive'
 Plug 'stsewd/fzf-checkout.vim'
 
+" Winow maximizer
+Plug 'szw/vim-maximizer'
+
 call plug#end()
 
 set background=dark
