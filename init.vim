@@ -94,6 +94,8 @@ let g:user_emmet_settings = {
     \},
 \}
 
+highlight Normal ctermbg=none
+
 " FORMATTERS
 au FileType javascript setlocal formatprg=prettier
 au FileType javascript.jsx setlocal formatprg=prettier
@@ -173,12 +175,12 @@ nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
 
 " Activate linters if installed in node modules
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
+" if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+let g:coc_global_extensions += ['coc-prettier']
+" endif
+" if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+let g:coc_global_extensions += ['coc-eslint']
+" endif
 
 " Autocomplete on enter
 if exists('*complete_info')
@@ -214,8 +216,8 @@ nnoremap <leader>p "+p
 nmap <leader>gs :G<CR>
 " Merge right window
 nmap <leader>gkr :diffget //3<CR>
-" Merge left wind w
-nmap <leader>gkl :diffget //3<CR>
+" Merge left window
+nmap <leader>gkl :diffget //2<CR>
 
 " Git checkout window
 let g:fzf_layout = { 'window': {'width':0.8, 'height': 0.8} }
